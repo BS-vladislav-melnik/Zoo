@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Zoo.Enums;
-namespace Zoo.Interfaces
+
+namespace Zoo.Core.Animals
 {
-    interface IAnimal
+    class Elephant : Animal
     {
-        AnimalState State { get; }
-        int Health { get; }
     }
 }
