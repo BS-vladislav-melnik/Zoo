@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Zoo.Enums
 {
-    class AnimalState
+    public enum AnimalState
     {
+        Full,
+        Hungry,
+        Sick,
+        Dead
     }
 }

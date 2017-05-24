@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Zoo.Enums;
 namespace Zoo.Interfaces
 {
-    interface IAnimal
+   public interface IAnimal
     {
-        AnimalState State { get; }
+        string Name { get; }
         int Health { get; }
+        AnimalState State { get;  }
+        
     }
 }

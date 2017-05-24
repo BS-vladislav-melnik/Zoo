@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Animal.cs" />
+    <Compile Include="Core\ZooFactory.cs" />
     <Compile Include="Core\Animals\Bear.cs" />
     <Compile Include="Core\Animals\Elephant.cs" />
     <Compile Include="Core\Animals\Fox.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Core\Animals\Wolf.cs" />
     <Compile Include="Enums\AnimalState.cs" />
     <Compile Include="Interfaces\IAnimal.cs" />
+    <Compile Include="Interfaces\IAnimalsFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

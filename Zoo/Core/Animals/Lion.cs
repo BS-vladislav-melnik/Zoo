@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Zoo.Core.Animals
 {
-    class Lion : Animal
+    public class Lion : Animal
     {
+        public Lion(string name) : base(name, 5)
+        {
+
+        }
     }
 }
