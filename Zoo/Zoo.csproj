@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Core\Animal.cs" />
     <Compile Include="Core\DefaultStrategy.cs" />
-    <Compile Include="Exeptions\AnimalDeadExeption.cs" />
+    <Compile Include="Exceptions\AnimalDeadException.cs" />
     <Compile Include="Core\ZooFactory.cs" />
     <Compile Include="Core\Animals\Bear.cs" />
     <Compile Include="Core\Animals\Elephant.cs" />
@@ -55,6 +55,7 @@
     <Compile Include="Core\Animals\Wolf.cs" />
     <Compile Include="Core\ZooRepository.cs" />
     <Compile Include="Enums\AnimalState.cs" />
+    <Compile Include="Infrastructure\StateChanged.cs" />
     <Compile Include="Interfaces\IAnimal.cs" />
     <Compile Include="Interfaces\IAnimalsFactory.cs" />
     <Compile Include="Interfaces\IAnimalsRepository.cs" />

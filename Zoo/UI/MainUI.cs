@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using Zoo.Interfaces;
 using Zoo.Core;
+using Zoo.Exceptions;
+using Zoo.Enums;
 namespace Zoo.UI
 {
    public class MainUI
@@ -15,6 +18,7 @@ namespace Zoo.UI
         {
             _repository = repository;
             repository.AllDead += AllDead;
+            repository.StateChanged += StateLog;
             Task.Run(()=> repository.FastingProcess());
         }
         private void AllDead()
@@ -23,34 +27,56 @@ namespace Zoo.UI
             Console.WriteLine("All of your animals are dead. Game over.");
             Environment.Exit(0);
         }
+        private void StateLog(AnimalState state, int health, string name)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("{0} changed its state to {1} and {2} hp",name,state,health);
+            Console.ResetColor();
+
+        }
         public void Menu()
         {
+
             while (true)
             {
-                Console.WriteLine("Select option:");
-                Console.WriteLine("1 - Add animal");
-                Console.WriteLine("2 - Feed animal");
-                Console.WriteLine("3 - Heal animal");
-                Console.WriteLine("4 - Remove animal");
-                string input = Console.ReadLine();
-                int option;
-                int.TryParse(input, out option);
-                switch (option)
+                try
                 {
-                    case 1:
-                        Add();
-                        break;
-                    case 2:
-                        Feed();
-                        break;
-                    case 3:
-                        Heal();
-                        break;
-                    case 4:
-                        Remove();
-                        break;
-                    default:
-                        break;
+
+                    Console.WriteLine("Select option:");
+                    Console.WriteLine("1 - Add animal");
+                    Console.WriteLine("2 - Feed animal");
+                    Console.WriteLine("3 - Heal animal");
+                    Console.WriteLine("4 - Remove animal");
+                    string input = Console.ReadLine();
+                    int option;
+                    int.TryParse(input, out option);
+                    switch (option)
+                    {
+                        case 1:
+                            Add();
+                            break;
+                        case 2:
+                            Feed();
+                            break;
+                        case 3:
+                            Heal();
+                            break;
+                        case 4:
+                            Remove();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                catch (AnimalDeadException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    throw;
                 }
             }
 
