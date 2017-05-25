@@ -41,6 +41,7 @@ namespace Zoo.Core
             _state = AnimalState.Full;
             _health= _maxHealth = maxHealth;
             _strategy = strategy;
+            _sync = new object();
         }
         public void FastingProcess()
         {

@@ -11,7 +11,7 @@ namespace Zoo.Core
     public class ZooFactory: IAnimalsFactory
     {
         private IStrategy _strategy;
-        ZooFactory(IStrategy strategy)
+        public ZooFactory(IStrategy strategy)
         {
             _strategy = strategy;
         }

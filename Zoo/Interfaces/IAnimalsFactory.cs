@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zoo.Interfaces
 {
-    interface IAnimalsFactory
+    public interface IAnimalsFactory
     {
         IAnimal CreateBear(string name);
         IAnimal CreateElephant(string name);

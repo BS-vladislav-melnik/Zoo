@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Zoo.Interfaces;
 using Zoo.Enums;
-using Zoo.Core.Exeptions;
+using Zoo.Exeptions;
 namespace Zoo.Core
 {
    public class DefaultStrategy:IStrategy
     {
        public void FastingProcess(ref int health, ref AnimalState state)
+
         {
             
                 switch (state)

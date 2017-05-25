@@ -9,7 +9,7 @@ using Zoo.Interfaces;
 using Zoo.Enums;
 namespace Zoo.Core
 {
-    class ZooRepository:IAnimalsRepository
+   public class ZooRepository:IAnimalsRepository
     {
         private List<IAnimal> _animals;
         private IAnimalsFactory _factory;
@@ -34,17 +34,23 @@ namespace Zoo.Core
         {
              FindByName(name).Heal();   
         }
+        
         public void FastingProcess()
         {
-            var randomizer = new Random();
-            var isAllDead = _animals.Where(x => x.State == AnimalState.Dead).Count() == _animals.Count();
+            
+            Random randomizer = new Random(); ;
+            var isAllDead=false;
             while (!isAllDead)
             {
-                if (_animals.Count != 0)
+                Thread.Sleep(5000); 
+                var nonDeadList = _animals.Where(x => x.State != AnimalState.Dead);
+                if (nonDeadList.Count() != 0)
                 {
-                    Thread.Sleep(5000);
-                    _animals[randomizer.Next(_animals.Count - 1)].FastingProcess();
+
+                    nonDeadList.ElementAt(randomizer.Next(nonDeadList.Count())).FastingProcess();
                 }
+                isAllDead = (_animals.Where(x => x.State == AnimalState.Dead).Count() == _animals.Count()) &&
+                             _animals.Count() > 0;
             }
             AllDead?.Invoke();
         }
@@ -58,19 +64,19 @@ namespace Zoo.Core
                     case "bear":
                         newAnimal=_factory.CreateBear(name);
                         break;
-                    case "Elephant":
+                    case "elephant":
                         newAnimal=_factory.CreateElephant(name);
                         break;
-                    case "Fox":
+                    case "fox":
                         newAnimal=_factory.CreateFox(name);
                         break;
-                    case "Lion":
+                    case "lion":
                         newAnimal = _factory.CreateLion(name);
                         break;
-                    case "Tiger":
+                    case "tiger":
                         newAnimal = _factory.CreateTiger(name);
                         break;
-                    case "Wolf":
+                    case "wolf":
                         newAnimal = _factory.CreateWolf(name);
                         break;
                     default:

@@ -9,6 +9,7 @@ namespace Zoo.Interfaces
     public interface IAnimalsRepository
     {
         IList<IAnimal> Animals { get; }
+        event Action AllDead;
         void Feed(string name);
         void Heal(string name);
         void FastingProcess();

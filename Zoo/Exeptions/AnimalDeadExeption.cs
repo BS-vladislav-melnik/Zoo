@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zoo.Core.Exeptions
+namespace Zoo.Exeptions
 {
     [System.Serializable]
     public class AnimalDeadExeption : Exception
