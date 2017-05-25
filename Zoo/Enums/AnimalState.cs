@@ -8,9 +8,9 @@ namespace Zoo.Enums
 {
     public enum AnimalState
     {
-        Full,
-        Hungry,
-        Sick,
-        Dead
+        Full=3,
+        Hungry=2,
+        Sick=1,
+        Dead=0
     }
 }

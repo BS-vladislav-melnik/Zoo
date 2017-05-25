@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Animal.cs" />
+    <Compile Include="Core\DefaultStrategy.cs" />
+    <Compile Include="Core\Exeptions\AnimalDeadExeption.cs" />
     <Compile Include="Core\ZooFactory.cs" />
     <Compile Include="Core\Animals\Bear.cs" />
     <Compile Include="Core\Animals\Elephant.cs" />
@@ -51,16 +53,21 @@
     <Compile Include="Core\Animals\Lion.cs" />
     <Compile Include="Core\Animals\Tiger.cs" />
     <Compile Include="Core\Animals\Wolf.cs" />
+    <Compile Include="Core\ZooRepository.cs" />
     <Compile Include="Enums\AnimalState.cs" />
     <Compile Include="Interfaces\IAnimal.cs" />
     <Compile Include="Interfaces\IAnimalsFactory.cs" />
+    <Compile Include="Interfaces\IAnimalsRepository.cs" />
+    <Compile Include="Interfaces\IStrategy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UI\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

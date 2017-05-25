@@ -11,6 +11,11 @@ namespace Zoo.Interfaces
         string Name { get; }
         int Health { get; }
         AnimalState State { get;  }
-        
+        void Feed();
+        void Heal();
+        void FastingProcess();
+
+
+
     }
 }

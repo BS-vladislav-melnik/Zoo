@@ -14,6 +14,8 @@ namespace Zoo.Core
         protected int _health;
         protected int _maxHealth;
         protected AnimalState _state;
+        private IStrategy _strategy;
+        private object _sync;
         #endregion
         #region Props
         public string Name {
@@ -32,14 +34,34 @@ namespace Zoo.Core
             }
         }
         #endregion
-        public Animal(string name, int maxHealth)
+        public Animal(string name, int maxHealth, IStrategy strategy)
         {   if (name == string.Empty)
                 throw new ArgumentException("Name cannot be null","name");
             _name = name;
             _state = AnimalState.Full;
             _health= _maxHealth = maxHealth;
+            _strategy = strategy;
+        }
+        public void FastingProcess()
+        {
+            lock (_sync) { 
+            _strategy.FastingProcess(ref _health,ref _state);
+            }
+        }
+        public void Heal()
+        {
+            lock (_sync)
+            {
+                _strategy.Heal(ref _health, _maxHealth);
+            }
+        }
+        public void Feed()
+        {
+            lock (_sync)
+            {
+                _strategy.Feed(ref _state);
+            }
         }
 
-       
     }
 }
