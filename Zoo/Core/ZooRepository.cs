@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Zoo.Interfaces;
 using Zoo.Enums;
+using Zoo.Infrastructure;
 namespace Zoo.Core
 {
+   
    public class ZooRepository:IAnimalsRepository
     {
         private List<IAnimal> _animals;
         private IAnimalsFactory _factory;
         public event Action AllDead;
+        public event StateChanged StateChanged;
         public IList<IAnimal> Animals {
 
             get {
@@ -28,11 +31,15 @@ namespace Zoo.Core
         }
         public void Feed(string name)
         {
-             FindByName(name).Feed();            
+            var element = FindByName(name);
+            element.Feed();
+            StateChanged?.Invoke(element.State, element.Health, element.Name);
         }
         public void Heal(string name)
         {
-             FindByName(name).Heal();   
+            var element = FindByName(name);
+            element.Heal();
+            StateChanged?.Invoke(element.State, element.Health, element.Name);
         }
         
         public void FastingProcess()
@@ -46,8 +53,9 @@ namespace Zoo.Core
                 var nonDeadList = _animals.Where(x => x.State != AnimalState.Dead);
                 if (nonDeadList.Count() != 0)
                 {
-
-                    nonDeadList.ElementAt(randomizer.Next(nonDeadList.Count())).FastingProcess();
+                    var element = nonDeadList.ElementAt(randomizer.Next(nonDeadList.Count()));
+                    element.FastingProcess();
+                    StateChanged?.Invoke(element.State,element.Health,element.Name);
                 }
                 isAllDead = (_animals.Where(x => x.State == AnimalState.Dead).Count() == _animals.Count()) &&
                              _animals.Count() > 0;

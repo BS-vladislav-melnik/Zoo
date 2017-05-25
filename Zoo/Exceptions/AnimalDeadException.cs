@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zoo.Exeptions
+namespace Zoo.Exceptions
 {
     [System.Serializable]
-    public class AnimalDeadExeption : Exception
+    public class AnimalDeadException : Exception
     {
-        public AnimalDeadExeption() { }
-        public AnimalDeadExeption(string message) : base(message) { }
-        public AnimalDeadExeption(string message, Exception inner) : base(message, inner) { }
-        protected AnimalDeadExeption(
+        public AnimalDeadException() { }
+        public AnimalDeadException(string message) : base(message) { }
+        public AnimalDeadException(string message, Exception inner) : base(message, inner) { }
+        protected AnimalDeadException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
     }

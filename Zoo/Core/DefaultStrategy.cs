@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zoo.Interfaces;
 using Zoo.Enums;
-using Zoo.Exeptions;
+using Zoo.Exceptions;
 namespace Zoo.Core
 {
    public class DefaultStrategy:IStrategy
@@ -30,7 +30,7 @@ namespace Zoo.Core
                         }
                         break;
                     case AnimalState.Dead:
-                            throw new AnimalDeadExeption("Animal already dead");
+                            throw new AnimalDeadException("Animal already dead");
                     default:
                         break;
                 }
@@ -38,7 +38,7 @@ namespace Zoo.Core
        public void Heal(ref int health, int maxHealth)
         {
             if (health == 0)
-                throw new AnimalDeadExeption("Too late to heal");
+                throw new AnimalDeadException("Too late to heal");
             if (maxHealth - health > 0)
             {
                 health++;
@@ -48,7 +48,7 @@ namespace Zoo.Core
         {
             if (state == AnimalState.Dead)
             {
-                throw new AnimalDeadExeption("Too late to feed");
+                throw new AnimalDeadException("Too late to feed");
             }
             if ((int)state < 3) state = AnimalState.Full;
         }
