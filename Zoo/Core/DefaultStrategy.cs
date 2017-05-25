@@ -50,7 +50,7 @@ namespace Zoo.Core
             {
                 throw new AnimalDeadExeption("Too late to feed");
             }
-            if ((int)state < 3) state++;
+            if ((int)state < 3) state = AnimalState.Full;
         }
     }
 }
