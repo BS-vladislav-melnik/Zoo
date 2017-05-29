@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Zoo.Interfaces;
-using Zoo.Enums;
-namespace Zoo.Core
+using ZooLib.Interfaces;
+using ZooLib.Enums;
+namespace ZooLib.Core
 {
    public abstract class Animal:IAnimal
     {
@@ -14,7 +14,6 @@ namespace Zoo.Core
         protected int _health;
         protected int _maxHealth;
         protected AnimalState _state;
-        private IStrategy _strategy;
         private object _sync;
         #endregion
         #region Props
@@ -27,42 +26,32 @@ namespace Zoo.Core
             get {
                 return _health;
             }
+            set {
+                if (value >= 0 && value <= _maxHealth)
+                    _health = value;
+                else
+                    throw new ArgumentOutOfRangeException();
+            }
         }
         public AnimalState State {
             get {
                 return _state;
             }
+            set {
+                _state = value;
+            }
         }
         #endregion
-        public Animal(string name, int maxHealth, IStrategy strategy)
-        {   if (name == string.Empty)
+        public Animal(string name, int maxHealth)
+        {
+            if (name == string.Empty)
                 throw new ArgumentException("Name cannot be null","name");
             _name = name;
             _state = AnimalState.Full;
             _health= _maxHealth = maxHealth;
-            _strategy = strategy;
             _sync = new object();
         }
-        public void FastingProcess()
-        {
-            lock (_sync) { 
-            _strategy.FastingProcess(ref _health,ref _state);
-            }
-        }
-        public void Heal()
-        {
-            lock (_sync)
-            {
-                _strategy.Heal(ref _health, _maxHealth);
-            }
-        }
-        public void Feed()
-        {
-            lock (_sync)
-            {
-                _strategy.Feed(ref _state);
-            }
-        }
+
 
     }
 }

@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZooLib.Enums;
-namespace ZooLib.Infrastructure
+namespace ZooLib.Interfaces
 {
-    public delegate void StateChanged(AnimalState state, int health,string Name);
+   public interface IStateChanger
+    {
+       void FastingProcess(IAnimal animal);
+    }
 }
