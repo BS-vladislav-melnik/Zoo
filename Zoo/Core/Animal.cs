@@ -10,18 +10,13 @@ namespace ZooLib.Core
    public abstract class Animal:IAnimal
     {
         #region Fields
-        private string _name;
-        protected int _health;
-        protected int _maxHealth;
-        protected AnimalState _state;
-        private object _sync;
+        private readonly string _name;
+        private readonly int _maxHealth;
+        private int _health;       
+        private AnimalState _state;
         #endregion
         #region Props
-        public string Name {
-            get {
-                return _name;
-            }
-        }
+        public string Name => _name;
         public int Health {
             get {
                 return _health;
@@ -42,14 +37,14 @@ namespace ZooLib.Core
             }
         }
         #endregion
-        public Animal(string name, int maxHealth)
+
+        protected Animal(string name, int maxHealth)
         {
             if (name == string.Empty)
-                throw new ArgumentException("Name cannot be null","name");
+                throw new ArgumentException("Name cannot be null",nameof(name));
             _name = name;
             _state = AnimalState.Full;
             _health= _maxHealth = maxHealth;
-            _sync = new object();
         }
 
 

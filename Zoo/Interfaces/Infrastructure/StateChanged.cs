@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 using ZooLib.Enums;
 namespace ZooLib.Infrastructure
 {
-    public delegate void StateChanged(AnimalState state, int health,string Name);
+    public delegate void StateChanged(AnimalState state, int health,string name);
 }

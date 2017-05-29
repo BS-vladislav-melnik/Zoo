@@ -15,9 +15,9 @@ namespace MenuUI
         static void Main(string[] args)
         {
             var strategy = new DefaultStateChanger();
-            var repository = new AnimalsRepository();
-            var factory = new AnimalsFactory();
-            var service = new ZooService(repository, strategy, factory);
+            var factory=new AnimalsFactory();
+            var repository = new ListRepository(factory);
+            var service = new ZooService(repository, strategy);
             var ui = new MainUI(service);
             using (var stream = new NamedPipeClientStream(".", "ZooPipe", PipeDirection.Out, PipeOptions.None))
             {

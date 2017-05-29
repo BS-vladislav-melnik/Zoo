@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AFE6BC14-EB2A-4B9A-9CD1-A739EA0B538D}</ProjectGuid>
+    <ProjectGuid>{2354FC5E-4617-44DF-B6D9-4A49252922F2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZooLib</RootNamespace>
-    <AssemblyName>ZooLib</AssemblyName>
+    <RootNamespace>ZooLib.Test</RootNamespace>
+    <AssemblyName>ZooLib.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,10 +29,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,31 +44,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Animal.cs" />
-    <Compile Include="Extensions\RepositoryQueries.cs" />
-    <Compile Include="Core\ZooService.cs" />
-    <Compile Include="Core\DefaultStateChanger.cs" />
-    <Compile Include="Exceptions\AnimalDeadException.cs" />
-    <Compile Include="Core\AnimalsFactory.cs" />
-    <Compile Include="Core\Animals\Bear.cs" />
-    <Compile Include="Core\Animals\Elephant.cs" />
-    <Compile Include="Core\Animals\Fox.cs" />
-    <Compile Include="Core\Animals\Lion.cs" />
-    <Compile Include="Core\Animals\Tiger.cs" />
-    <Compile Include="Core\Animals\Wolf.cs" />
-    <Compile Include="Core\ListRepository.cs" />
-    <Compile Include="Enums\AnimalState.cs" />
-    <Compile Include="Interfaces\Infrastructure\StateChanged.cs" />
-    <Compile Include="Interfaces\IAnimal.cs" />
-    <Compile Include="Interfaces\IAnimalsFactory.cs" />
-    <Compile Include="Interfaces\IAnimalsRepository.cs" />
-    <Compile Include="Interfaces\IStateChanger.cs" />
+    <Compile Include="RepositoryQueriesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Zoo\ZooLib.csproj">
+      <Project>{afe6bc14-eb2a-4b9a-9cd1-a739ea0b538d}</Project>
+      <Name>ZooLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

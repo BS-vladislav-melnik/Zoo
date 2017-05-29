@@ -31,8 +31,6 @@ namespace ZooLib.Core
                         break;
                     case AnimalState.Dead:
                             throw new AnimalDeadException("Animal already dead");
-                    default:
-                        break;
                 }
         }
        

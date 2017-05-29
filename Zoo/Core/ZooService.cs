@@ -8,74 +8,34 @@ using ZooLib.Interfaces;
 using ZooLib.Enums;
 using ZooLib.Infrastructure;
 using ZooLib.Exceptions;
+using ZooLib.Core.Animals;
 namespace ZooLib.Core
 {
-   public class ZooService
+    public class ZooService
     {
         public event Action AllDead;
         public event StateChanged StateChanged;
-        private IAnimalsRepository _repository;
-        private IStateChanger _strategy;
-        private IAnimalsFactory _factory;
-        public ZooService(IAnimalsRepository repository, IStateChanger strategy, IAnimalsFactory factory)
+        private readonly IAnimalsRepository _repository;
+        private readonly IStateChanger _strategy;
+        public IAnimalsRepository Repository => _repository;
+
+        public ZooService(IAnimalsRepository repository, IStateChanger strategy)
         {
             _repository = repository;
             _strategy = strategy;
-            _factory = factory;
         }
-        public void Add(string name, string typename)
-        {
-            if (_repository.Get(name) == null)
-            {
-                IAnimal newAnimal;
-                switch (typename.ToLower())
-                {
-                    case "bear":
-                        newAnimal = _factory.CreateBear(name);
-                        break;
-                    case "elephant":
-                        newAnimal = _factory.CreateElephant(name);
-                        break;
-                    case "fox":
-                        newAnimal = _factory.CreateFox(name);
-                        break;
-                    case "lion":
-                        newAnimal = _factory.CreateLion(name);
-                        break;
-                    case "tiger":
-                        newAnimal = _factory.CreateTiger(name);
-                        break;
-                    case "wolf":
-                        newAnimal = _factory.CreateWolf(name);
-                        break;
-                    default:
-                        throw new ArgumentException("Invalid type name");
-                }
-                _repository.Add(newAnimal);
 
-
-            }
-        }
-        public bool Remove(string name)
-        {
-            var animal = _repository.Get(name);
-            if (animal == null || animal.State != Enums.AnimalState.Dead)
-                return false;
-            else
-            {
-                 return _repository.Remove(animal);
-            }
-        }
         public void Feed(string name)
         {
             var element = _repository.Get(name);
-            if (element.State== AnimalState.Dead)
+            if (element.State == AnimalState.Dead)
             {
                 throw new AnimalDeadException("Too late to feed");
             }
             if ((int)element.State < 3) element.State = AnimalState.Full;
             StateChanged?.Invoke(element.State, element.Health, element.Name);
         }
+
         public void Heal(string name)
         {
             var element = _repository.Get(name);
@@ -84,26 +44,27 @@ namespace ZooLib.Core
             element.Health++;
             StateChanged?.Invoke(element.State, element.Health, element.Name);
         }
+
         public void FastingProcess()
         {
 
-            Random randomizer = new Random(); 
+            var randomizer = new Random();
             var isAllDead = false;
             while (!isAllDead)
             {
                 Thread.Sleep(5000);
-                var nonDeadList = _repository.GetAll().Where(x => x.State != AnimalState.Dead);
+                var nonDeadList = _repository.GetAll().Where(x => x.State != AnimalState.Dead).ToList();
                 if (nonDeadList.Count() != 0)
                 {
                     var element = nonDeadList.ElementAt(randomizer.Next(nonDeadList.Count()));
                     _strategy.FastingProcess(element);
                     StateChanged?.Invoke(element.State, element.Health, element.Name);
                 }
-                isAllDead = (_repository.GetAll().Where(x => x.State == AnimalState.Dead).Count() == _repository.GetAll().Count()) &&
-                             _repository.GetAll().Count() > 0;
+                isAllDead = (_repository.GetAll().Count(x => x.State == AnimalState.Dead) == _repository.GetAll().Count()) &&
+                             _repository.GetAll().Any();
             }
             AllDead?.Invoke();
         }
-
+    
     }
 }

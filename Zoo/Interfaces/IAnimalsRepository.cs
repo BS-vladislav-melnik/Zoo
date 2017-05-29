@@ -9,8 +9,10 @@ namespace ZooLib.Interfaces
     public interface IAnimalsRepository
     {
         IList<IAnimal> GetAll();
-        void Add(IAnimal animal);
+        void Add(string name, string typename);
         bool Remove(IAnimal animal);
         IAnimal Get(string name);
+        bool RemoveByName(string name);
+
     }
 }

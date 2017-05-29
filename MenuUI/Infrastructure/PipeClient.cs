@@ -10,7 +10,7 @@ namespace MenuUI.Infrastructure
 {
    public class PipeClient
     {
-        private NamedPipeClientStream _stream;
+        private readonly NamedPipeClientStream _stream;
         public PipeClient(NamedPipeClientStream stream)
         {
             _stream = stream;
