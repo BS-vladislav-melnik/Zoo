@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZooLib", "Zoo\ZooLib.csproj", "{AFE6BC14-EB2A-4B9A-9CD1-A739EA0B538D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuUI", "MenuUI\MenuUI.csproj", "{CED40A82-1E1F-4580-A627-CD526DE33462}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageLog", "MessageLog\MessageLog.csproj", "{AD89DA09-F7EC-4143-ACFC-811F2671A66D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{AFE6BC14-EB2A-4B9A-9CD1-A739EA0B538D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFE6BC14-EB2A-4B9A-9CD1-A739EA0B538D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFE6BC14-EB2A-4B9A-9CD1-A739EA0B538D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CED40A82-1E1F-4580-A627-CD526DE33462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CED40A82-1E1F-4580-A627-CD526DE33462}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CED40A82-1E1F-4580-A627-CD526DE33462}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CED40A82-1E1F-4580-A627-CD526DE33462}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD89DA09-F7EC-4143-ACFC-811F2671A66D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD89DA09-F7EC-4143-ACFC-811F2671A66D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD89DA09-F7EC-4143-ACFC-811F2671A66D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD89DA09-F7EC-4143-ACFC-811F2671A66D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
