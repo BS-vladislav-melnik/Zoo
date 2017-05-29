@@ -3,66 +3,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Zoo.Interfaces;
-using Zoo.Enums;
-namespace Zoo.Core
+using ZooLib.Interfaces;
+using ZooLib.Enums;
+namespace ZooLib.Core
 {
    public abstract class Animal:IAnimal
     {
         #region Fields
-        private string _name;
-        protected int _health;
-        protected int _maxHealth;
-        protected AnimalState _state;
-        private IStrategy _strategy;
-        private object _sync;
+        private readonly string _name;
+        private readonly int _maxHealth;
+        private int _health;       
+        private AnimalState _state;
         #endregion
         #region Props
-        public string Name {
-            get {
-                return _name;
-            }
-        }
+        public string Name => _name;
         public int Health {
             get {
                 return _health;
+            }
+            set {
+                if (value >= 0 && value <= _maxHealth)
+                    _health = value;
+                else
+                    throw new ArgumentOutOfRangeException();
             }
         }
         public AnimalState State {
             get {
                 return _state;
             }
+            set {
+                _state = value;
+            }
         }
         #endregion
-        public Animal(string name, int maxHealth, IStrategy strategy)
-        {   if (name == string.Empty)
-                throw new ArgumentException("Name cannot be null","name");
+
+        protected Animal(string name, int maxHealth)
+        {
+            if (name == string.Empty)
+                throw new ArgumentException("Name cannot be null",nameof(name));
             _name = name;
             _state = AnimalState.Full;
             _health= _maxHealth = maxHealth;
-            _strategy = strategy;
-            _sync = new object();
         }
-        public void FastingProcess()
-        {
-            lock (_sync) { 
-            _strategy.FastingProcess(ref _health,ref _state);
-            }
-        }
-        public void Heal()
-        {
-            lock (_sync)
-            {
-                _strategy.Heal(ref _health, _maxHealth);
-            }
-        }
-        public void Feed()
-        {
-            lock (_sync)
-            {
-                _strategy.Feed(ref _state);
-            }
-        }
+
 
     }
 }

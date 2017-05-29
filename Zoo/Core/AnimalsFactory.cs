@@ -3,41 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Zoo.Interfaces;
-using Zoo.Core.Animals;
-namespace Zoo.Core
+using ZooLib.Interfaces;
+using ZooLib.Core.Animals;
+namespace ZooLib.Core
 {
     //Can be considered as simplified implementation of "Factory method"
-    public class ZooFactory: IAnimalsFactory
+    public class AnimalsFactory: IAnimalsFactory
     {
-        private IStrategy _strategy;
-        public ZooFactory(IStrategy strategy)
-        {
-            _strategy = strategy;
-        }
         public IAnimal CreateBear(string name)
         {
-            return new Bear(name, _strategy);
+            return new Bear(name);
         }
         public IAnimal CreateElephant(string name)
         {
-            return new Elephant(name, _strategy);
+            return new Elephant(name);
         }
         public IAnimal CreateFox(string name)
         {
-            return new Fox(name, _strategy);
+            return new Fox(name);
         }
         public IAnimal CreateLion(string name)
         {
-            return new Lion(name, _strategy);
+            return new Lion(name);
         }
         public IAnimal CreateTiger(string name)
         {
-            return new Tiger(name, _strategy);
+            return new Tiger(name);
         }
         public IAnimal CreateWolf(string name)
         {
-            return new Wolf(name, _strategy);
+            return new Wolf(name);
         }
     }
 }

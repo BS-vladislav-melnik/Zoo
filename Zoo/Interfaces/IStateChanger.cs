@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 using ZooLib.Enums;
 namespace ZooLib.Interfaces
 {
-   public interface IAnimal
+   public interface IStateChanger
     {
-        string Name { get; }
-        int Health { get; set; }
-        AnimalState State { get; set; }
+       void FastingProcess(IAnimal animal);
     }
 }

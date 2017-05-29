@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zoo.Interfaces
+namespace ZooLib.Interfaces
 {
     public interface IAnimalsFactory
     {
