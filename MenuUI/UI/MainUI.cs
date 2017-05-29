@@ -9,11 +9,13 @@ using ZooLib.Interfaces;
 using ZooLib.Core;
 using ZooLib.Exceptions;
 using ZooLib.Enums;
-namespace Zoo.UI
+using MenuUI.Infrastructure;
+namespace MenuUI.UI
 {
    public class MainUI
     {
         private ZooService _service;
+        public event StringMessage Message;
         public MainUI(ZooService service)
         {
             _service = service;
@@ -23,20 +25,17 @@ namespace Zoo.UI
         }
         private void AllDead()
         {
-            Console.ForegroundColor=ConsoleColor.Red;
-            Console.WriteLine("All of your animals are dead. Game over.");
-            Environment.Exit(0);
+            Message?.Invoke("All of your animals are dead. Game over.", ConsoleColor.Red);
+            
         }
         private void StateLog(AnimalState state, int health, string name)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("{0} changed its state to {1} and {2} hp",name,state,health);
-            Console.ResetColor();
-
+        {            
+            Message?.Invoke(String.Format("{0} changed its state to {1} and {2} hp", name, state, health), ConsoleColor.Green);
         }
         public void Menu()
         {
 
+            
             while (true)
             {
                 try
